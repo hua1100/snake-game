@@ -34,7 +34,7 @@ export class GameEngine extends EventSystem {
 
     this.initializeGame();
     this.state = GameState.RUNNING;
-    this.lastMoveTime = Date.now();
+    this.lastMoveTime = 0; // 使用 0 讓第一次更新立即執行
     this.startGameLoop();
     this.emit(GameEvent.GAME_START, { score: this.score });
   }
@@ -61,7 +61,7 @@ export class GameEngine extends EventSystem {
     }
 
     this.state = GameState.RUNNING;
-    this.lastMoveTime = Date.now();
+    this.lastMoveTime = 0; // 重置為 0
     this.startGameLoop();
     this.emit(GameEvent.GAME_RESUME);
   }

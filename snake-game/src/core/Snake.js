@@ -90,8 +90,8 @@ export class Snake {
       return CollisionType.WALL;
     }
 
-    // 檢查是否撞到自己
-    if (this.contains(this.head)) {
+    // 檢查是否撞到自己的身體（不包括頭部）
+    if (this.body.some(bodyPart => bodyPart.equals(this.head))) {
       return CollisionType.SELF;
     }
 

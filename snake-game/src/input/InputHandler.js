@@ -17,6 +17,10 @@ export class InputHandler {
     this.eventListeners = {};
     this.lastKeyTime = 0;
     this.keyThrottle = 100; // 防止按鍵過快
+    
+    // 綁定事件處理器並保存引用
+    this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+    this.boundHandleKeyUp = this.handleKeyUp.bind(this);
   }
 
   /**
@@ -28,8 +32,8 @@ export class InputHandler {
     }
 
     this.isListening = true;
-    document.addEventListener('keydown', this.handleKeyDown.bind(this));
-    document.addEventListener('keyup', this.handleKeyUp.bind(this));
+    document.addEventListener('keydown', this.boundHandleKeyDown);
+    document.addEventListener('keyup', this.boundHandleKeyUp);
   }
 
   /**
@@ -41,8 +45,8 @@ export class InputHandler {
     }
 
     this.isListening = false;
-    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
-    document.removeEventListener('keyup', this.handleKeyUp.bind(this));
+    document.removeEventListener('keydown', this.boundHandleKeyDown);
+    document.removeEventListener('keyup', this.boundHandleKeyUp);
   }
 
   /**
@@ -50,8 +54,6 @@ export class InputHandler {
    * @param {KeyboardEvent} event - 鍵盤事件
    */
   handleKeyDown(event) {
-    event.preventDefault();
-    
     const currentTime = Date.now();
     if (currentTime - this.lastKeyTime < this.keyThrottle) {
       return;
@@ -59,7 +61,12 @@ export class InputHandler {
     this.lastKeyTime = currentTime;
 
     const key = event.key;
-    this.handleKeyPress(key);
+    
+    // 只對遊戲相關按鍵阻止預設行為
+    if (this.isDirectionKey(key) || this.isGameControlKey(key)) {
+      event.preventDefault();
+      this.handleKeyPress(key);
+    }
   }
 
   /**
