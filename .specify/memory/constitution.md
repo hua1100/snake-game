@@ -1,50 +1,123 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# 專案憲章
 
-## Core Principles
+<!-- 
+同步影響報告:
+版本變更: 無 → 1.0.0
+新增章節: 測試驅動開發原則、行為驅動開發原則、視覺化進度追蹤原則
+移除章節: 無
+需要更新的模板: ✅ 全部新建
+後續待辦事項: 無
+-->
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+**版本**: 1.0.0  
+**制定日期**: 2025-01-17  
+**最後修訂**: 2025-01-17
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+## 專案概述
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+本專案遵循測試驅動開發（TDD）和行為驅動開發（BDD）原則，確保程式碼品質和專案可維護性。所有開發活動都必須遵循以下核心原則。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+## 核心原則
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### 原則 1: 測試驅動開發（TDD）
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**必須遵循的規則**:
+- 在撰寫任何生產程式碼之前，必須先撰寫失敗的測試
+- 遵循「紅-綠-重構」循環：撰寫失敗測試 → 撰寫最少程式碼通過測試 → 重構優化
+- 測試覆蓋率必須達到 80% 以上
+- 所有公開方法都必須有對應的單元測試
+- 整合測試必須涵蓋所有主要功能流程
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**理由**: TDD 確保程式碼的正確性，提高重構信心，並促進更好的程式設計。
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### 原則 2: 行為驅動開發（BDD）
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**必須遵循的規則**:
+- 使用 Given-When-Then 格式撰寫功能規格
+- 所有使用者故事都必須有對應的 BDD 測試場景
+- 功能規格必須在程式碼實作之前完成
+- 使用自然語言描述業務邏輯，確保技術與非技術人員都能理解
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+**理由**: BDD 確保開發的功能符合業務需求，提高團隊溝通效率。
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### 原則 3: 視覺化進度追蹤
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**必須遵循的規則**:
+- 每週產生開發進度視覺化報告
+- 使用圖表展示測試覆蓋率、功能完成度、程式碼品質指標
+- 定期更新專案看板，顯示當前任務狀態
+- 提供清晰的里程碑進度指示器
+
+**理由**: 視覺化進度有助於團隊和利害關係人了解專案狀態，及時發現問題。
+
+### 原則 4: 程式碼品質
+
+**必須遵循的規則**:
+- 所有程式碼必須通過靜態分析工具檢查
+- 遵循一致的程式碼風格指南
+- 程式碼審查是強制性的，至少需要一位同事審查
+- 技術債務必須記錄並定期處理
+
+**理由**: 高品質的程式碼是專案長期成功的基礎。
+
+### 原則 5: 文檔化
+
+**必須遵循的規則**:
+- 所有 API 都必須有完整的文檔
+- 重要決策必須記錄在架構決策記錄（ADR）中
+- 使用繁體中文撰寫所有說明文檔
+- 文檔必須與程式碼同步更新
+
+**理由**: 良好的文檔有助於知識傳承和專案維護。
+
+## 治理架構
+
+### 修訂程序
+
+1. **提案階段**: 任何團隊成員都可以提出憲章修訂提案
+2. **討論階段**: 提案必須在團隊會議中討論至少一週
+3. **投票階段**: 需要 2/3 以上團隊成員同意才能通過修訂
+4. **實施階段**: 修訂通過後，所有相關模板和文檔必須同步更新
+
+### 版本控制政策
+
+- **主版本號（MAJOR）**: 向後不相容的治理原則變更或移除
+- **次版本號（MINOR）**: 新增原則或重大擴展指導方針
+- **修訂版本號（PATCH）**: 澄清說明、措辭修正、非語義性改進
+
+### 合規審查
+
+- 每月進行一次合規性審查
+- 檢查所有開發活動是否符合憲章原則
+- 識別並處理違規情況
+- 更新改進建議
+
+## 執行標準
+
+### 開發流程
+
+1. **需求分析**: 使用 BDD 格式撰寫功能規格
+2. **測試撰寫**: 先撰寫失敗的測試案例
+3. **程式碼實作**: 撰寫最少程式碼通過測試
+4. **重構優化**: 在測試保護下重構程式碼
+5. **文檔更新**: 同步更新相關文檔
+6. **進度追蹤**: 更新視覺化進度報告
+
+### 品質門檻
+
+- 測試覆蓋率 ≥ 80%
+- 程式碼複雜度 ≤ 10
+- 靜態分析無嚴重問題
+- 所有 BDD 場景通過
+
+### 例外處理
+
+在特殊情況下，可以申請暫時豁免某些原則，但必須：
+1. 提供詳細的技術理由
+2. 設定明確的恢復期限
+3. 獲得技術負責人批准
+4. 記錄在例外處理日誌中
+
+---
+
+*本憲章是專案治理的基礎文件，所有團隊成員都必須嚴格遵循。*

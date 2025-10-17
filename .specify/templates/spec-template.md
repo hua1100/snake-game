@@ -1,116 +1,180 @@
-# Feature Specification: [FEATURE NAME]
+# 功能規格模板
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+## 功能概述
+- **功能名稱**: [FEATURE_NAME]
+- **版本**: [VERSION]
+- **建立日期**: [CREATION_DATE]
+- **最後更新**: [LAST_UPDATED]
 
-## User Scenarios & Testing *(mandatory)*
+## 業務需求
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+### 使用者故事
+```
+作為 [使用者角色]
+我希望 [功能描述]
+以便 [業務價值]
 
-### User Story 1 - [Brief Title] (Priority: P1)
+驗收標準:
+- [ ] [驗收標準1]
+- [ ] [驗收標準2]
+- [ ] [驗收標準3]
+```
 
-[Describe this user journey in plain language]
+### 業務規則
+1. [業務規則1]
+2. [業務規則2]
+3. [業務規則3]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+## BDD 規格
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+### 功能描述
+```gherkin
+功能: [功能名稱]
+  作為 [使用者角色]
+  我希望 [功能描述]
+  以便 [業務價值]
+```
 
-**Acceptance Scenarios**:
+### 測試場景
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+#### 場景 1: [正常流程]
+```gherkin
+場景: [場景描述]
+  假設 [前置條件]
+  當 [操作步驟]
+  那麼 [預期結果]
+```
 
----
+#### 場景 2: [異常流程]
+```gherkin
+場景: [場景描述]
+  假設 [前置條件]
+  當 [操作步驟]
+  那麼 [預期結果]
+```
 
-### User Story 2 - [Brief Title] (Priority: P2)
+#### 場景 3: [邊界條件]
+```gherkin
+場景: [場景描述]
+  假設 [前置條件]
+  當 [操作步驟]
+  那麼 [預期結果]
+```
 
-[Describe this user journey in plain language]
+## 技術規格
 
-**Why this priority**: [Explain the value and why it has this priority level]
+### API 規格
+```yaml
+/api/[endpoint]:
+  post:
+    summary: [API描述]
+    parameters:
+      - name: [參數名稱]
+        type: [參數類型]
+        required: true
+        description: [參數描述]
+    responses:
+      200:
+        description: 成功回應
+        schema:
+          type: object
+          properties:
+            [屬性名稱]:
+              type: [屬性類型]
+              description: [屬性描述]
+```
 
-**Independent Test**: [Describe how this can be tested independently]
+### 資料模型
+```json
+{
+  "[實體名稱]": {
+    "id": "string",
+    "name": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+  }
+}
+```
 
-**Acceptance Scenarios**:
+### 資料庫設計
+```sql
+CREATE TABLE [table_name] (
+    id SERIAL PRIMARY KEY,
+    [column_name] [data_type] [constraints],
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+## 測試計畫
 
----
+### 單元測試
+- [ ] [測試案例1]: 測試 [功能描述]
+- [ ] [測試案例2]: 測試 [功能描述]
+- [ ] [測試案例3]: 測試 [功能描述]
 
-### User Story 3 - [Brief Title] (Priority: P3)
+### 整合測試
+- [ ] [測試案例1]: 測試 [模組間互動]
+- [ ] [測試案例2]: 測試 [API整合]
+- [ ] [測試案例3]: 測試 [資料庫整合]
 
-[Describe this user journey in plain language]
+### 端對端測試
+- [ ] [測試案例1]: 測試 [完整使用者流程]
+- [ ] [測試案例2]: 測試 [跨系統整合]
 
-**Why this priority**: [Explain the value and why it has this priority level]
+## 效能需求
 
-**Independent Test**: [Describe how this can be tested independently]
+### 回應時間
+- API 回應時間: ≤ [目標時間]ms
+- 頁面載入時間: ≤ [目標時間]s
+- 資料庫查詢時間: ≤ [目標時間]ms
 
-**Acceptance Scenarios**:
+### 吞吐量
+- 並發使用者數: [目標數量]
+- 每秒請求數: [目標RPS]
+- 資料處理量: [目標TPS]
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+## 安全性需求
 
----
+### 認證與授權
+- [ ] 使用者認證機制
+- [ ] 角色權限控制
+- [ ] API 金鑰管理
 
-[Add more user stories as needed, each with an assigned priority]
+### 資料保護
+- [ ] 敏感資料加密
+- [ ] 資料傳輸安全
+- [ ] 資料備份策略
 
-### Edge Cases
+## 可維護性需求
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+### 程式碼品質
+- 程式碼覆蓋率: ≥ 80%
+- 程式碼複雜度: ≤ 10
+- 靜態分析: 無嚴重問題
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+### 文檔要求
+- [ ] API 文檔
+- [ ] 程式碼註解
+- [ ] 部署指南
+- [ ] 故障排除指南
 
-## Requirements *(mandatory)*
+## 驗收標準
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
+### 功能驗收
+- [ ] 所有 BDD 場景通過
+- [ ] 所有使用者故事驗收標準達成
+- [ ] 效能需求滿足
+- [ ] 安全性需求滿足
 
-### Functional Requirements
+### 品質驗收
+- [ ] 測試覆蓋率達標
+- [ ] 程式碼品質檢查通過
+- [ ] 文檔完整性檢查通過
+- [ ] 使用者驗收測試通過
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
+## 相關文件
+- [架構設計文件](./architecture.md)
+- [API 文檔](./api-docs.md)
+- [測試報告](./test-report.md)
+- [部署指南](./deployment.md)
