@@ -186,6 +186,10 @@ export class GameEngine extends EventSystem {
       value: this.food.value,
       newScore: this.score
     });
+    
+    this.emit(GameEvent.SCORE_UPDATE, {
+      newScore: this.score
+    });
   }
 
   /**

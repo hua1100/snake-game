@@ -17,15 +17,15 @@ function initializeGame() {
   // 建立遊戲配置
   const config = new GameConfig({
     gridSize: new GridSize(20, 20),
-    initialSpeed: 200,
-    speedIncrement: 20,
-    minSpeed: 50,
+    initialSpeed: 300,
+    speedIncrement: 25,
+    minSpeed: 75,
     foodValue: 10,
     keyBindings: {
-      up: 'ArrowUp',
-      down: 'ArrowDown',
-      left: 'ArrowLeft',
-      right: 'ArrowRight',
+      up: ['ArrowUp', 'w', 'W'],
+      down: ['ArrowDown', 's', 'S'],
+      left: ['ArrowLeft', 'a', 'A'],
+      right: ['ArrowRight', 'd', 'D'],
       pause: 'Space',
       restart: 'r'
     },
@@ -201,12 +201,15 @@ function updateLevel(level) {
 
 /**
  * 更新遊戲速度顯示
- * @param {number} speed - 速度
+ * @param {number} speed - 速度（毫秒）
  */
 function updateSpeed(speed) {
   const speedElement = document.getElementById('gameSpeed');
   if (speedElement) {
-    speedElement.textContent = `${speed}ms`;
+    // 將速度（毫秒）轉換為速度等級（數字越大越快）
+    // 公式：速度等級 = (初始速度 - 當前速度) / 速度增量 + 1
+    const speedLevel = Math.floor((300 - speed) / 25) + 1;
+    speedElement.textContent = `${speedLevel}`;
   }
 }
 
@@ -254,7 +257,7 @@ function hideGameOverlay() {
 function resetUI() {
   updateScore(0);
   updateLevel(1);
-  updateSpeed(200);
+  updateSpeed(300);
   updateSnakeLength(1);
 }
 
@@ -270,9 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// 防止頁面滾動（避免方向鍵滾動頁面）
+// 防止頁面滾動（避免方向鍵和 WASD 滾動頁面）
 document.addEventListener('keydown', (event) => {
-  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(event.key)) {
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'].includes(event.key)) {
     event.preventDefault();
   }
 });

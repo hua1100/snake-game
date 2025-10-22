@@ -6,10 +6,10 @@ import { Direction, GameEvent } from '../core/Enums.js';
 export class InputHandler {
   constructor() {
     this.keyBindings = {
-      up: 'ArrowUp',
-      down: 'ArrowDown',
-      left: 'ArrowLeft',
-      right: 'ArrowRight',
+      up: ['ArrowUp', 'w', 'W'],
+      down: ['ArrowDown', 's', 'S'],
+      left: ['ArrowLeft', 'a', 'A'],
+      right: ['ArrowRight', 'd', 'D'],
       pause: 'Space',
       restart: 'r'
     };
@@ -119,7 +119,10 @@ export class InputHandler {
    * @returns {boolean} 是否為方向鍵
    */
   isDirectionKey(key) {
-    return Object.values(this.keyBindings).slice(0, 4).includes(key);
+    const directionKeys = Object.values(this.keyBindings).slice(0, 4);
+    return directionKeys.some(keys => 
+      Array.isArray(keys) ? keys.includes(key) : keys === key
+    );
   }
 
   /**
@@ -137,13 +140,11 @@ export class InputHandler {
    * @returns {Direction} 方向
    */
   getDirectionFromKey(key) {
-    const directionMap = {
-      [this.keyBindings.up]: Direction.UP,
-      [this.keyBindings.down]: Direction.DOWN,
-      [this.keyBindings.left]: Direction.LEFT,
-      [this.keyBindings.right]: Direction.RIGHT
-    };
-    return directionMap[key];
+    if (this.keyBindings.up.includes(key)) return Direction.UP;
+    if (this.keyBindings.down.includes(key)) return Direction.DOWN;
+    if (this.keyBindings.left.includes(key)) return Direction.LEFT;
+    if (this.keyBindings.right.includes(key)) return Direction.RIGHT;
+    return null;
   }
 
   /**
